@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent):
             this,
             SLOT(quit()));
 
-    connect(ui->pushButtonAzul,
+    /*connect(ui->pushButtonAzul,
             SIGNAL(clicked(bool)),
             this,
             SLOT(lcd_display()));
@@ -32,24 +32,31 @@ MainWindow::MainWindow(QWidget *parent):
             SIGNAL(clicked(bool)),
             this,
             SLOT(contador_verde()));
+
     connect(ui->pushButtonAmarelo,
             SIGNAL(clicked(bool)),
             ui->lcdNumber_maior,
-            SLOT(display(int)));
+            SLOT(display(int)));*/
+    //Conecta click do botao amarelo a funcao que emite sinal para lcd number
     connect(ui->pushButtonAmarelo,
             SIGNAL(clicked(bool)),
             this,
             SLOT(on_button1_clicked(bool)));
+    //Conecta click do botao azul a funcao que emite sinal para lcd number
+    connect(ui->pushButtonAzul,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(on_button1_clicked(bool)));
+    //Conecta click do botao verde a funcao que emite sinal para lcd number
+    connect(ui->pushButtonVerde,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(on_button1_clicked(bool)));
+    //Conecta funcao que emite sinal numerico ao lcd number atual
     connect(this,
             SIGNAL(UpdateValFunc(int)),
             ui->lcdNumber_atual,
             SLOT(display(int)));
-            //
-            //SLOT(display(double)));
-    /*connect(ui->pushButtonAmarelo,
-            SIGNAL(clicked(bool)),
-            this,
-            SLOT(setChecked(bool)));*/
 }
 //QObject::connect(horizontalSlider, &QSlider::valueChanged, lcdNumber, QOverload<int>::of(&QLCDNumber::display));
 
@@ -106,11 +113,11 @@ void MainWindow::sequencia_atual()
 
 void MainWindow::on_button1_clicked(bool _checked)
 {
-    emit UpdateValFunc(5); /*checked = _checked;
+    //checked = _checked;
     if(checked)
         {
            //some work here.....
-            emit UpdateValFunc(5);// ui->lcdNumber_maior->setText(int());
+            emit UpdateValFunc(azul++);// ui->lcdNumber_maior->setText(int());
             //repaint();
             //ui->pushButtonAmarelo->setText(tr("on "));
            //.......
@@ -118,7 +125,7 @@ void MainWindow::on_button1_clicked(bool _checked)
         else
         {
            //some work here.......
-            emit UpdateValFunc(5);//ui->pushButtonAmarelo->setText(tr("off "));
+            emit UpdateValFunc(98);//ui->pushButtonAmarelo->setText(tr("off "));
            //......
         }*/
 }

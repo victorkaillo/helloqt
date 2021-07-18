@@ -15,8 +15,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private:
-    int azul = 1;
-    int verde, amarelo;
+    int azul = 0;
+    int verde = 0, amarelo = 0;
     bool checked;
 public:
     //void mousePressEvent(QMouseEvent *event);
