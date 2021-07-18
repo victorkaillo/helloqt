@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/bolas">
+        <file alias="bolaVermelha">bolaVermelha.png</file>
+        <file alias="bolaAzul">bolaAzul.png</file>
+        <file alias="bolaAmarela">bolaAmarela.png</file>
+    </qresource>
+</RCC>
