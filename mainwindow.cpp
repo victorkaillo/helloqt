@@ -127,7 +127,7 @@ void MainWindow::on_button1_clicked(bool _checked)
            //some work here.......
             emit UpdateValFunc(98);//ui->pushButtonAmarelo->setText(tr("off "));
            //......
-        }*/
+        }
 }
 
 
