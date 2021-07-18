@@ -114,10 +114,11 @@ void MainWindow::sequencia_atual()
 void MainWindow::on_button1_clicked(bool _checked)
 {
     //checked = _checked;
-    if(checked)
+    emit UpdateValFunc(azul++);
+    /*if(checked)
         {
            //some work here.....
-            emit UpdateValFunc(azul++);// ui->lcdNumber_maior->setText(int());
+            // ui->lcdNumber_maior->setText(int());
             //repaint();
             //ui->pushButtonAmarelo->setText(tr("on "));
            //.......
@@ -125,9 +126,9 @@ void MainWindow::on_button1_clicked(bool _checked)
         else
         {
            //some work here.......
-            emit UpdateValFunc(98);//ui->pushButtonAmarelo->setText(tr("off "));
+            ui->pushButtonAmarelo->setText(tr("off "));
            //......
-        }
+        }*/
 }
 
 
