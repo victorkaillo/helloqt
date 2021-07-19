@@ -173,7 +173,6 @@ void MainWindow::lcdDisplay_Start(bool _checked)
 
 void MainWindow::sequencia_maior()
 {
-
     int reacao = (int) tempo2 - tempo1;
     emit ValueDisplayReacao(reacao);
 }

@@ -60,7 +60,7 @@
      <string>&gt;&gt;&gt;&gt;</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -130,7 +130,7 @@
                <item>
                 <widget class="QLabel" name="label_2">
                  <property name="text">
-                  <string>Maior sequência:</string>
+                  <string>T. Reacao (ds):</string>
                  </property>
                 </widget>
                </item>
