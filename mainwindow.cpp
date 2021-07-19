@@ -4,6 +4,9 @@
 #include <QAbstractSlider>
 #include <chrono>
 #include <ctime>
+#include <time.h>   // para: time()
+#include <unistd.h>
+#include <stdlib.h>
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -53,6 +56,10 @@ MainWindow::MainWindow(QWidget *parent):
             SIGNAL(clicked(bool)),
             this,
             SLOT(lcdDisplay_Start(bool)));
+    connect(this,
+            SIGNAL(ValueDisplayReacao(int)),
+            ui->lcdNumber_maior,
+            SLOT(display(int)));
     //startTimer(3500);
 }
 //QObject::connect(horizontalSlider, &QSlider::valueChanged, lcdNumber, QOverload<int>::of(&QLCDNumber::display));
@@ -89,10 +96,15 @@ void MainWindow::copy()
 
 void MainWindow::contador_dez(bool _checked)
 {
+    tempo2 = time( (time_t *) 0);
     if(value==10){
         dez++;
         emit UpdateValFunc(dez+vinte+trinta);
-        killTimer(1);
+        killTimer(timerId);
+        value = arc4random()%3;
+        value = value * 10;
+        if(value==0)
+            value=20;
         lcdDisplay_Start(true);
     }
     else{
@@ -105,11 +117,15 @@ void MainWindow::contador_dez(bool _checked)
 
 void MainWindow::contador_vinte(bool _checked)
 {
-
+    tempo2 = time( (time_t *) 0);
     if(value==20){
         ++vinte;
         emit UpdateValFunc(dez+vinte+trinta);
-        killTimer(1);
+        killTimer(timerId);
+        value = arc4random()%3;
+        value = value * 10;
+        if(value==0)
+            value=30;
         lcdDisplay_Start(true);
     }
     else{
@@ -122,34 +138,44 @@ void MainWindow::contador_vinte(bool _checked)
 
 void MainWindow::contador_trinta(bool _checked)
 {
+    tempo2 = time( (time_t *) 0);
+    sequencia_maior();
     if(value==30){
         ++trinta;
+        emit UpdateValFunc(dez+vinte+trinta);
+        killTimer(timerId);
+        value = arc4random()%2;
+        value = value * 10;
+        if(value==0)
+            value=20;
+        lcdDisplay_Start(true);
     }
     else{
         dez = 0;
         vinte = 0;
         trinta = 0;
+        emit UpdateValFunc(dez+vinte+trinta);
     }
-    emit UpdateValFunc(dez+vinte+trinta);
-    killTimer(1);
-    lcdDisplay_Start(true);
 }
 
 void MainWindow::lcdDisplay(bool _checked)
 {
     emit ValueDisplay(value);
+    tempo1 = time( (time_t *) 0);
 }
 
 void MainWindow::lcdDisplay_Start(bool _checked)
 {
-    startTimer(3000);
     emit ValueDisplay(value);
+    timerId = startTimer(3000);
 }
 
 
 void MainWindow::sequencia_maior()
 {
-    //a->setText(a);
+
+    int reacao = (int) tempo2 - tempo1;
+    emit ValueDisplayReacao(reacao);
 }
 
 void MainWindow::sequencia_atual()

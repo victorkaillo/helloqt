@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <chrono>
+#include <ctime>
+#include <unistd.h>
+using namespace std;
+using namespace chrono;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,11 +23,14 @@ private:
     int dez = 0, value = 0;
     int vinte = 0, trinta = 0;
     bool checked = true;
+    int timerId;
+    time_t tempo1, tempo2;
 public:
     void timerEvent(QTimerEvent *event);
 signals:
     void UpdateValFunc(int);
     void ValueDisplay(int);
+    void ValueDisplayReacao(int);
 public slots:
     void quit();
     void copy();
