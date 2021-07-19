@@ -5,7 +5,6 @@
 #include <chrono>
 #include <ctime>
 #include <time.h>   // para: time()
-#include <unistd.h>
 #include <stdlib.h>
 
 #ifdef _WIN32
@@ -100,6 +99,7 @@ void MainWindow::contador_dez(bool _checked)
     if(value==10){
         dez++;
         emit UpdateValFunc(dez+vinte+trinta);
+        sequencia_maior();
         killTimer(timerId);
         value = arc4random()%3;
         value = value * 10;
@@ -112,6 +112,7 @@ void MainWindow::contador_dez(bool _checked)
         vinte = 0;
         trinta = 0;
         emit UpdateValFunc(dez+vinte+trinta);
+        sequencia_maior();
     }
 }
 
@@ -121,6 +122,7 @@ void MainWindow::contador_vinte(bool _checked)
     if(value==20){
         ++vinte;
         emit UpdateValFunc(dez+vinte+trinta);
+        sequencia_maior();
         killTimer(timerId);
         value = arc4random()%3;
         value = value * 10;
@@ -133,16 +135,18 @@ void MainWindow::contador_vinte(bool _checked)
         vinte = 0;
         trinta = 0;
         emit UpdateValFunc(dez+vinte+trinta);
+        sequencia_maior();
     }
 }
 
 void MainWindow::contador_trinta(bool _checked)
 {
     tempo2 = time( (time_t *) 0);
-    sequencia_maior();
+    //sequencia_maior();
     if(value==30){
         ++trinta;
         emit UpdateValFunc(dez+vinte+trinta);
+        sequencia_maior();
         killTimer(timerId);
         value = arc4random()%2;
         value = value * 10;
@@ -155,6 +159,7 @@ void MainWindow::contador_trinta(bool _checked)
         vinte = 0;
         trinta = 0;
         emit UpdateValFunc(dez+vinte+trinta);
+        sequencia_maior();
     }
 }
 
@@ -167,6 +172,7 @@ void MainWindow::lcdDisplay(bool _checked)
 void MainWindow::lcdDisplay_Start(bool _checked)
 {
     emit ValueDisplay(value);
+    tempo1 = time( (time_t *) 0);
     timerId = startTimer(3000);
 }
 
