@@ -15,20 +15,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private:
-    int azul = 0;
-    int verde = 0, amarelo = 0;
-    bool checked;
+    int dez = 0, value = 0;
+    int vinte = 0, trinta = 0;
+    bool checked = true;
 public:
-    //void mousePressEvent(QMouseEvent *event);
+    void timerEvent(QTimerEvent *event);
 signals:
     void UpdateValFunc(int);
+    void ValueDisplay(int);
 public slots:
     void quit();
     void copy();
-    void contador_azul(int _azul);
-    void contador_verde(int _verde);
-    void contador_amarelo(int _amarelo);
-    int lcd_display();
+    void contador_dez(bool _checked);
+    void contador_vinte(bool _checked);
+    void contador_trinta(bool _checked);
+    void lcdDisplay(bool _checked);
     void sequencia_maior();
     void sequencia_atual();
     void on_button1_clicked(bool _checked);

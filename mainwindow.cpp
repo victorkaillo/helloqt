@@ -23,46 +23,56 @@ MainWindow::MainWindow(QWidget *parent):
             SIGNAL(clicked(bool)),
             this,
             SLOT(quit()));
-
-    /*connect(ui->pushButtonAzul,
-            SIGNAL(clicked(bool)),
-            this,
-            SLOT(lcd_display()));
-    connect(ui->pushButtonVerde,
-            SIGNAL(clicked(bool)),
-            this,
-            SLOT(contador_verde()));
-
-    connect(ui->pushButtonAmarelo,
-            SIGNAL(clicked(bool)),
-            ui->lcdNumber_maior,
-            SLOT(display(int)));*/
     //Conecta click do botao amarelo a funcao que emite sinal para lcd number
-    connect(ui->pushButtonAmarelo,
+    connect(ui->pushButtonDez,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(on_button1_clicked(bool)));
+            SLOT(contador_dez(bool)));
     //Conecta click do botao azul a funcao que emite sinal para lcd number
-    connect(ui->pushButtonAzul,
+    connect(ui->pushButtonVinte,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(on_button1_clicked(bool)));
+            SLOT(contador_vinte(bool)));
     //Conecta click do botao verde a funcao que emite sinal para lcd number
-    connect(ui->pushButtonVerde,
+    connect(ui->pushButtonTrinta,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(on_button1_clicked(bool)));
+            SLOT(contador_trinta(bool)));
     //Conecta funcao que emite sinal numerico ao lcd number atual
     connect(this,
             SIGNAL(UpdateValFunc(int)),
             ui->lcdNumber_atual,
             SLOT(display(int)));
+    //Conecta sinal da funcao ao visor
+    connect(this,
+            SIGNAL(ValueDisplay(int)),
+            ui->lcdNumber_visor,
+            SLOT(display(int)));
+    //Conecta botao start a funcao
+    connect(ui->pushButtonStart,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(lcdDisplay(bool)));
+    startTimer(5000);
 }
 //QObject::connect(horizontalSlider, &QSlider::valueChanged, lcdNumber, QOverload<int>::of(&QLCDNumber::display));
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::timerEvent(QTimerEvent *event)
+{
+    value = arc4random()%3;
+    value = value * 10;
+    if(value > 30){
+        value = 10;
+    }
+    else if(value == 0){
+        value = 30;
+    }
+    lcdDisplay(true);
 }
 
 
@@ -77,29 +87,50 @@ void MainWindow::copy()
     ui->textBrowser->setText(ui->textEdit->toPlainText());
 }
 
-void MainWindow::contador_azul(int _azul)
+void MainWindow::contador_dez(bool _checked)
 {
-    lcd_display();
+    if(value==10){
+        dez++;
+    }
+    else{
+        dez = 0;
+        vinte = 0;
+        trinta = 0;
+    }
+    emit UpdateValFunc(dez+vinte+trinta);
 }
 
-void MainWindow::contador_verde(int _verde)
-{
-    repaint();
-}
-
-void MainWindow::contador_amarelo(int _amarelo)
+void MainWindow::contador_vinte(bool _checked)
 {
 
+    if(value==20){
+        ++vinte;
+    }
+    else{
+        dez = 0;
+        vinte = 0;
+        trinta = 0;
+    }
+    emit UpdateValFunc(dez+vinte+trinta);
 }
 
-int MainWindow::lcd_display()
+void MainWindow::contador_trinta(bool _checked)
 {
-    //void lcdNumber_maior::display(double 1)
-            return 1;
+    if(value==30){
+        ++trinta;
+    }
+    else{
+        dez = 0;
+        vinte = 0;
+        trinta = 0;
+    }
+    emit UpdateValFunc(dez+vinte+trinta);
 }
 
-
-
+void MainWindow::lcdDisplay(bool _checked)
+{
+    emit ValueDisplay(value);
+}
 
 void MainWindow::sequencia_maior()
 {
@@ -113,29 +144,20 @@ void MainWindow::sequencia_atual()
 
 void MainWindow::on_button1_clicked(bool _checked)
 {
-    //checked = _checked;
-    emit UpdateValFunc(azul++);
-    /*if(checked)
-        {
-           //some work here.....
-            // ui->lcdNumber_maior->setText(int());
-            //repaint();
-            //ui->pushButtonAmarelo->setText(tr("on "));
-           //.......
-        }
-        else
-        {
-           //some work here.......
-            ui->pushButtonAmarelo->setText(tr("off "));
-           //......
-        }*/
+    //emit UpdateValFunc(++dez);
 }
-
-
-/*void MainWindow::display()
-{
-    ui->labelAzul->setStyleSheet();
-            //setStyleSheet(background-color: rgba(0,0,254,50));
-
-}
-*/
+//checked = _checked;
+/*if(checked)
+    {
+       //some work here.....
+        // ui->lcdNumber_maior->setText(int());
+        //repaint();
+        //ui->pushButtonAmarelo->setText(tr("on "));
+       //.......
+    }
+    else
+    {
+       //some work here.......
+        ui->pushButtonAmarelo->setText(tr("off "));
+       //......
+    }*/

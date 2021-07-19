@@ -30,8 +30,8 @@
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>50</y>
+      <x>300</x>
+      <y>20</y>
       <width>104</width>
       <height>74</height>
      </rect>
@@ -40,8 +40,8 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>40</y>
+      <x>510</x>
+      <y>10</y>
       <width>161</width>
       <height>111</height>
      </rect>
@@ -50,8 +50,8 @@
    <widget class="QPushButton" name="pushButton_copy">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>70</y>
+      <x>420</x>
+      <y>40</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -63,48 +63,85 @@
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>220</y>
-      <width>270</width>
-      <height>99</height>
+      <x>60</x>
+      <y>110</y>
+      <width>292</width>
+      <height>197</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_6">
+    <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <widget class="QPushButton" name="pushButtonStart">
+         <property name="text">
+          <string>START GAME</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Clique nos botoes conforme aparece no visor:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumber_visor">
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
+          <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
+            <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
              <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Sequência atual:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLCDNumber" name="lcdNumber_atual"/>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Sequência atual:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLCDNumber" name="lcdNumber_atual">
+                 <property name="segmentStyle">
+                  <enum>QLCDNumber::Flat</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Maior sequência:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLCDNumber" name="lcdNumber_maior"/>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Maior sequência:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLCDNumber" name="lcdNumber_maior">
+                 <property name="segmentStyle">
+                  <enum>QLCDNumber::Flat</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
@@ -112,33 +149,33 @@
          </item>
         </layout>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButtonAmarelo">
-         <property name="text">
-          <string>AMARELO</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButtonAzul">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>AZUL</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButtonVerde">
-         <property name="text">
-          <string>VERDE</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="pushButtonDez">
+           <property name="text">
+            <string>DEZ</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonVinte">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>VINTE</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonTrinta">
+           <property name="text">
+            <string>TRINTA</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
@@ -176,7 +213,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButtonAmarelo</sender>
+   <sender>pushButtonDez</sender>
    <signal>clicked(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>contador_azul()</slot>
@@ -192,7 +229,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButtonAzul</sender>
+   <sender>pushButtonVinte</sender>
    <signal>clicked(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>contador_azul()</slot>
@@ -208,7 +245,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButtonAmarelo</sender>
+   <sender>pushButtonDez</sender>
    <signal>clicked(bool)</signal>
    <receiver>lcdNumber_atual</receiver>
    <slot>update()</slot>
