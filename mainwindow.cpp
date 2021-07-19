@@ -52,8 +52,8 @@ MainWindow::MainWindow(QWidget *parent):
     connect(ui->pushButtonStart,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(lcdDisplay(bool)));
-    startTimer(5000);
+            SLOT(lcdDisplay_Start(bool)));
+    //startTimer(3500);
 }
 //QObject::connect(horizontalSlider, &QSlider::valueChanged, lcdNumber, QOverload<int>::of(&QLCDNumber::display));
 
@@ -91,13 +91,16 @@ void MainWindow::contador_dez(bool _checked)
 {
     if(value==10){
         dez++;
+        emit UpdateValFunc(dez+vinte+trinta);
+        killTimer(1);
+        lcdDisplay_Start(true);
     }
     else{
         dez = 0;
         vinte = 0;
         trinta = 0;
+        emit UpdateValFunc(dez+vinte+trinta);
     }
-    emit UpdateValFunc(dez+vinte+trinta);
 }
 
 void MainWindow::contador_vinte(bool _checked)
@@ -105,13 +108,16 @@ void MainWindow::contador_vinte(bool _checked)
 
     if(value==20){
         ++vinte;
+        emit UpdateValFunc(dez+vinte+trinta);
+        killTimer(1);
+        lcdDisplay_Start(true);
     }
     else{
         dez = 0;
         vinte = 0;
         trinta = 0;
+        emit UpdateValFunc(dez+vinte+trinta);
     }
-    emit UpdateValFunc(dez+vinte+trinta);
 }
 
 void MainWindow::contador_trinta(bool _checked)
@@ -125,12 +131,21 @@ void MainWindow::contador_trinta(bool _checked)
         trinta = 0;
     }
     emit UpdateValFunc(dez+vinte+trinta);
+    killTimer(1);
+    lcdDisplay_Start(true);
 }
 
 void MainWindow::lcdDisplay(bool _checked)
 {
     emit ValueDisplay(value);
 }
+
+void MainWindow::lcdDisplay_Start(bool _checked)
+{
+    startTimer(3000);
+    emit ValueDisplay(value);
+}
+
 
 void MainWindow::sequencia_maior()
 {
@@ -146,18 +161,3 @@ void MainWindow::on_button1_clicked(bool _checked)
 {
     //emit UpdateValFunc(++dez);
 }
-//checked = _checked;
-/*if(checked)
-    {
-       //some work here.....
-        // ui->lcdNumber_maior->setText(int());
-        //repaint();
-        //ui->pushButtonAmarelo->setText(tr("on "));
-       //.......
-    }
-    else
-    {
-       //some work here.......
-        ui->pushButtonAmarelo->setText(tr("off "));
-       //......
-    }*/

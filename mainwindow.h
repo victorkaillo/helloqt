@@ -30,6 +30,7 @@ public slots:
     void contador_vinte(bool _checked);
     void contador_trinta(bool _checked);
     void lcdDisplay(bool _checked);
+    void lcdDisplay_Start(bool _checked);
     void sequencia_maior();
     void sequencia_atual();
     void on_button1_clicked(bool _checked);
